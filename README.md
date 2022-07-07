@@ -4,18 +4,44 @@
 
 Feel free to send us merge request.
 
+## A quick example
+
+```php
+<?php
+
+use ZabbixWrapper\Entity as ZE;
+
+require __DIR__ . '/vendor/autoload.php';
+
+$zabbix = new ZabbixApi\ZabbixApi('http://localhost/api_jsonrpc.php', ['user' => 'Admin', 'password' => 'zabbix'], ['verify' => false]);
+$manager = new ZabbixWrapper\EntityManager($zabbix);
+
+// Delete Ethernet speed change trigger if exists
+$manager->getEntity(ZE\Template::class, 'Linux by Zabbix agent active')
+    ->getEntity(ZE\DiscoveryRule::class, 'Network interface discovery');
+    ->fluentEntity(ZE\TriggerPrototype::class, 'Interface {#IFNAME}: Ethernet has changed to lower speed than it was before')
+    ->delete();
+
+// Update AGENT.NODATA_TIMEOUT to 5 minutes (default is 30 minutes)
+$manager->getEntity(ZE\Template::class, 'Linux by Zabbix agent active')
+    ->getEntity(ZE\Macro::class, '{$AGENT.NODATA_TIMEOUT}')->update(['value' => '5m']);
+```
+
 ## Purpose
 
-We wanted to migrated our old zabbix servers to a clean installation, so we can use new and updated templates.
+We wanted to migrated our old zabbix server to a fresh installation, so we can use new and updated templates. We also wanted to keep track of changes we do to the templates. You know - default 30 minutes for server outage trigger is too long for production environment.
 
-Zabbix provides us with an amaizing API and (freeeed/zabbix)[https://packagist.org/packages/freeeed/zabbix] is extremely lightweight library to acess zabbix in PHP.
+Zabbix provides us with an amaizing API and (freeeed/zabbix)[https://packagist.org/packages/freeeed/zabbix] is extremely lightweight library to acess zabbix api in PHP.
 
 However after several migration scripts we started to struggle with very complex code, which was repeating itself.
 
 Therefore we were looking for a method, which will help us to express our changes in human readable format. Such us:
 
 ```
-Template('Linux agent')->Discovery('Linux by Zabbix agent active')->TriggerPrototype('{#FSNAME}: Disk space is critically low')->delete()
+Template('Linux agent')
+    ->Discovery('Linux by Zabbix agent active')
+    ->TriggerPrototype('{#FSNAME}: Disk space is critically low')
+    ->delete()
 ```
 
 ## Installation

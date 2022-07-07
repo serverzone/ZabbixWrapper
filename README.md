@@ -113,7 +113,7 @@ $templates = $manager->getEntities(ZE\Template::class);
 
   * Returns entity or DummyFluent, which si an object consuming all commands and returing itself
   * Throws an exception if multiple entities are found
-  * Use case: Item is supposed to be deleted no matter if it exists or not, so we run the script mulitple times
+  * Use case: Item is supposed to be deleted no matter if it exists or not, so we can execute the script mulitple times
 
 ```php
 $template = $manager->getEntity(ZE\Template::class, 'Linux by Zabbix agent active')

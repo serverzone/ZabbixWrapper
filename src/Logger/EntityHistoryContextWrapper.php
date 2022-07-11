@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace ZabbixWrapper\Logger;
 
@@ -13,13 +13,20 @@ use ZabbixWrapper\EntityTree;
 class EntityHistoryContextWrapper extends AbstractLogger
 {
 
-    private $entity;
+    private EntityTree $entity;
 
-    private $signature;
+    private string $signature;
 
-    private $history;
+    /** @var array<int|string, mixed> */
+    private array $history;
 
-    public function __construct(EntityTree $entity, $signature)
+    /**
+     * Class constructor.
+     *
+     * @param EntityTree $entity
+     * @param string $signature
+     */
+    public function __construct(EntityTree $entity, string $signature)
     {
         $this->entity = $entity;
         $this->signature = $signature;
@@ -31,8 +38,14 @@ class EntityHistoryContextWrapper extends AbstractLogger
         $this->entity->getLogger()->log($level, $message, $context);
     }
 
-    public function getHistory() {
-        if (isset($this->history) !== FALSE) {
+    /**
+     * Return history.
+     *
+     * @return array<int|string, mixed>
+     */
+    public function getHistory(): array
+    {
+        if (isset($this->history) !== false) {
             return $this->history;
         }
 
@@ -40,7 +53,7 @@ class EntityHistoryContextWrapper extends AbstractLogger
         $this->history = [];
 
         $parent = $this->entity->getParent();
-        if ($parent !== NULL) {
+        if ($parent !== null) {
             $this->history = $parent->getLoggerWrapper()->getHistory();
         }
         $this->history[] = $this->signature;

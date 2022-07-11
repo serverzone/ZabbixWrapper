@@ -11,7 +11,8 @@ class Host extends AbstractEntity
 
     protected static string $zabbixEndpoint = 'host';
 
-    protected function buildGetEntityParameters(string $className) {
+    protected function buildGetEntityParameters(string $className)
+    {
         switch ($className) {
             case Template::class:
                 return [ 'hostids' => $this->get('hostid') ];
@@ -19,5 +20,4 @@ class Host extends AbstractEntity
 
         return false;
     }
-
 }

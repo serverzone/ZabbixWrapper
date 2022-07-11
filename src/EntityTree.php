@@ -2,9 +2,18 @@
 
 namespace ZabbixWrapper;
 
-use Psr\Log;
+use Psr\Log\LoggerInterface;
 
-interface EntityTree {
+interface EntityTree
+{
+
+    /**
+     * Class constructor.
+     *
+     * @param \ZabbixWrapper\EntityTree|\ZabbixApi\ZabbixApi $parent
+     * @param mixed $data
+     */
+    public function __construct($parent, $data);
 
     /**
      * Returns parent or null if we are at root
@@ -42,4 +51,24 @@ interface EntityTree {
      */
     public function createEntity(string $className, array $value);
 
+    /**
+     * Return logger.
+     *
+     * @return LoggerInterface
+     */
+    public function getLogger(): LoggerInterface;
+
+    /**
+     * Returns EntityManager.
+     *
+     * @return \ZabbixWrapper\EntityManager
+     */
+    public function getEntityManager(): \ZabbixWrapper\EntityManager;
+
+    /**
+     * Return zabbix api.
+     *
+     * @return \ZabbixApi\ZabbixApi
+     */
+    public function getZabbix(): \ZabbixApi\ZabbixApi;
 }

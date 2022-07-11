@@ -1,0 +1,32 @@
+{
+    "name": "serverzone/zabbix-wrapper",
+    "description": "Zabbix",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "ZabbixWrapper\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "ServerZone s.r.o.",
+            "email": "info@serverzone.cz"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=7.4",
+        "freeeed/zabbix": "^0.1.0",
+        "squizlabs/php_codesniffer": "^3.7",
+        "psr/log": "^1.1"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^1.8"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": false
+        }
+    }
+}

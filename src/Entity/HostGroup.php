@@ -10,5 +10,4 @@ class HostGroup extends AbstractEntity
     protected static string $entityIdIndex = 'groupid';
 
     protected static string $zabbixEndpoint = 'hostgroup';
-
 }

@@ -10,5 +10,4 @@ class Graph extends AbstractEntity
     protected static string $entityIdIndex = 'graphid';
 
     protected static string $zabbixEndpoint = 'graph';
-
 }

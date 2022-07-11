@@ -12,7 +12,15 @@ use Psr\Log\LoggerInterface;
 final class SimpleStd extends AbstractLogger
 {
 
-    public function log($level, $message, array $context = []) {
+    /**
+     * Log message.
+     *
+     * @param mixed $level
+     * @param string $message
+     * @param array<string, mixed> $context
+     */
+    public function log($level, $message, array $context = [])
+    {
         $history = $context['@@EntityHistory'] ?? [];
         $callTrace = (count($history) > 0 ? "\n\t" : '' ) . implode("\n\t-> ", $history);
         unset($context['@@EntityHistory']);
@@ -21,5 +29,4 @@ final class SimpleStd extends AbstractLogger
 
         echo sprintf("%s: %s %s %s\n\n", date('d.m.Y H:i:s'), $message, $contextJson, $callTrace);
     }
-
 }

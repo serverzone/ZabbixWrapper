@@ -10,5 +10,4 @@ class ItemPrototype extends AbstractEntity
     protected static string $entityIdIndex = 'itemid';
 
     protected static string $zabbixEndpoint = 'itemprototype';
-
 }

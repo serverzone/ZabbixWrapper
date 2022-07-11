@@ -1,32 +1,37 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace ZabbixWrapper;
 
 use Psr\Log;
+use Psr\Log\LoggerInterface;
 
-abstract class AbstractEntityTree implements EntityTree {
+abstract class AbstractEntityTree implements EntityTree
+{
 
-    public function __toString() {
+    public function __toString()
+    {
         return '';
     }
 
     /*************** Parent *******************************/
 
-    protected $parent = NULL;
+    protected $parent = null;
 
-    public function getParent() {
+    public function getParent()
+    {
         return $this->parent;
     }
 
     /*************** Zabbix *******************************/
 
-    protected $zabbix;
+    protected \ZabbixApi\ZabbixApi $zabbix;
 
     /**
      * Returns ZabbixApi\ZabbixApi instance we use in current tree
      *
      */
-    public function getZabbix() {
+    public function getZabbix(): \ZabbixApi\ZabbixApi
+    {
         return $this->zabbix;
     }
 
@@ -37,11 +42,13 @@ abstract class AbstractEntityTree implements EntityTree {
     /**
      * Return current logger or NullLogger it none found.
      *
+     * @return LoggerInterface
      */
-    public function getLogger() {
-        if (isset($this->logger) === FALSE) {
+    public function getLogger(): LoggerInterface
+    {
+        if (isset($this->logger) === false) {
             $parent = $this->getParent();
-            $this->logger = ($parent !== NULL ? $parent->getLogger() : new Log\NullLogger());
+            $this->logger = ($parent !== null ? $parent->getLogger() : new Log\NullLogger());
         }
 
         return $this->logger;
@@ -49,8 +56,9 @@ abstract class AbstractEntityTree implements EntityTree {
 
     protected $loggerWrapper;
 
-    public function getLoggerWrapper() {
-        if (isset($this->loggerWrapper) === FALSE) {
+    public function getLoggerWrapper()
+    {
+        if (isset($this->loggerWrapper) === false) {
             $signature = $this->__toString();
             $signature = static::class . ($signature ? "('" . $signature . "')" : '');
             $this->loggerWrapper = new Logger\EntityHistoryContextWrapper($this, $signature);
@@ -63,10 +71,11 @@ abstract class AbstractEntityTree implements EntityTree {
     protected EntityManager $entityManager;
 
     /**
-     * Returns EntityManagers
+     * Returns EntityManager.
      *
      */
-    protected function getEntityManager() {
+    public function getEntityManager(): EntityManager
+    {
         return $this->entityManager;
     }
 
@@ -80,7 +89,8 @@ abstract class AbstractEntityTree implements EntityTree {
 
     abstract public function getEntity(string $className, ...$parameters);
 
-    public function fluentEntity(string $className, ...$parameters) {
+    public function fluentEntity(string $className, ...$parameters)
+    {
         try {
             return $this->getEntity($className, ...$parameters);
         } catch (EntityNotFoundException $e) {
@@ -96,7 +106,8 @@ abstract class AbstractEntityTree implements EntityTree {
      * We protected creating new instances out of EntityTree this way
      *
      */
-    protected static function createInstance($parent, $data) {
+    protected static function createInstance($parent, $data)
+    {
         return new static($parent, $data);
     }
 }

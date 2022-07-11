@@ -1,0 +1,8 @@
+parameters:
+    level: 5
+    paths:
+        - src
+    ignoreErrors:
+    	-
+    		message: '#Constructor of class ZabbixWrapper\\EntityManager has an unused parameter \$data.#'
+    		path: src/EntityManager.php

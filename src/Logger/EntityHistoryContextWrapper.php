@@ -31,8 +31,9 @@ class EntityHistoryContextWrapper extends AbstractLogger
         $this->entity->getLogger()->log($level, $message, $context);
     }
 
-    public function getHistory() {
-        if (isset($this->history) !== FALSE) {
+    public function getHistory()
+    {
+        if (isset($this->history) !== false) {
             return $this->history;
         }
 
@@ -40,7 +41,7 @@ class EntityHistoryContextWrapper extends AbstractLogger
         $this->history = [];
 
         $parent = $this->entity->getParent();
-        if ($parent !== NULL) {
+        if ($parent !== null) {
             $this->history = $parent->getLoggerWrapper()->getHistory();
         }
         $this->history[] = $this->signature;

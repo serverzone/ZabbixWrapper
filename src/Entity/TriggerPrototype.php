@@ -10,5 +10,4 @@ class TriggerPrototype extends AbstractEntity
     protected static string $entityIdIndex = 'triggerid';
 
     protected static string $zabbixEndpoint = 'triggerprototype';
-
 }

@@ -19,5 +19,4 @@ interface Entity
      *
      */
     public static function getZabbixEndpoint();
-
 }

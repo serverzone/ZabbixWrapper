@@ -4,7 +4,8 @@ namespace ZabbixWrapper;
 
 use Psr\Log;
 
-interface EntityTree {
+interface EntityTree
+{
 
     /**
      * Returns parent or null if we are at root
@@ -41,5 +42,4 @@ interface EntityTree {
      *
      */
     public function createEntity(string $className, array $value);
-
 }

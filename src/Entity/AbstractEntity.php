@@ -165,7 +165,9 @@ abstract class AbstractEntity extends ZabbixWrapper\AbstractEntityTree implement
 
         $this->getLoggerWrapper()->debug(sprintf('Creating entity "%s"', static::class), ['values' => $values]);
 
-        if ($this->getEntityManager()->getDryRun() === true) return;
+        if ($this->getEntityManager()->getDryRun() === true) {
+            return;
+        }
 
         return $this->entityManager->createEntity($className, $values);
     }
@@ -187,7 +189,9 @@ abstract class AbstractEntity extends ZabbixWrapper\AbstractEntityTree implement
 
         $this->getLoggerWrapper()->debug(sprintf('Updating entity [%d] "%s"', $id, $this->__toString()), ['values' => $values]);
 
-        if ($this->getEntityManager()->getDryRun() === true) return;
+        if ($this->getEntityManager()->getDryRun() === true) {
+            return;
+        }
 
         $endpoint = static::$zabbixEndpoint;
         $this->getZabbix()->$endpoint->update($values);
@@ -202,7 +206,9 @@ abstract class AbstractEntity extends ZabbixWrapper\AbstractEntityTree implement
         $id = $this->get(static::$entityIdIndex);
         $this->getLoggerWrapper()->debug(sprintf('Deleting entity [%d] "%s".', $id, $this->__toString()));
 
-        if ($this->getEntityManager()->getDryRun() === true) return;
+        if ($this->getEntityManager()->getDryRun() === true) {
+            return;
+        }
 
         $endpoint = static::$zabbixEndpoint;
         $this->getZabbix()->$endpoint->delete([
@@ -249,5 +255,4 @@ abstract class AbstractEntity extends ZabbixWrapper\AbstractEntityTree implement
     {
         return $this->get(static::$entityNameIndex);
     }
-
 }

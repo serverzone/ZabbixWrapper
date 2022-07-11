@@ -11,7 +11,8 @@ class Template extends AbstractEntity
 
     protected static string $zabbixEndpoint = 'template';
 
-    protected function buildGetEntityParameters(string $className) {
+    protected function buildGetEntityParameters(string $className)
+    {
         switch ($className) {
             case Macro::class:
                 return [ 'hostids' => [ $this->get('templateid') ]];
@@ -22,7 +23,6 @@ class Template extends AbstractEntity
                 return [ 'templateids' => [ $this->get('templateid') ]];
         }
 
-        return FALSE;
+        return false;
     }
-
 }

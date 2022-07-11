@@ -11,8 +11,9 @@ class DiscoveryRule extends AbstractEntity
 
     protected static string $zabbixEndpoint = 'discoveryrule';
 
-    protected function buildGetEntityParameters(string $className) {
-        $result = FALSE;
+    protected function buildGetEntityParameters(string $className)
+    {
+        $result = false;
 
         switch ($className) {
             case GraphPrototype::class:
@@ -28,8 +29,9 @@ class DiscoveryRule extends AbstractEntity
         return $result;
     }
 
-    protected function buildCreateEntityValues(string $className) {
-        $result = FALSE;
+    protected function buildCreateEntityValues(string $className)
+    {
+        $result = false;
 
         switch ($className) {
             case ItemPrototype::class:
@@ -42,5 +44,4 @@ class DiscoveryRule extends AbstractEntity
 
         return $result;
     }
-
 }

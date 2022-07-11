@@ -10,6 +10,4 @@ class GraphPrototype extends AbstractEntity
     protected static string $entityIdIndex = 'graphid';
 
     protected static string $zabbixEndpoint = 'graphprototype';
-
-
 }

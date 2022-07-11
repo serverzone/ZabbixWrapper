@@ -5,7 +5,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Serverzone\\ZabbixWrapper\\": "src/"
+            "ZabbixWrapper\\": "src/"
         }
     },
     "authors": [
@@ -18,7 +18,8 @@
     "require": {
         "php": ">=7.4",
         "freeeed/zabbix": "^0.1.0",
-        "squizlabs/php_codesniffer": "^3.7"
+        "squizlabs/php_codesniffer": "^3.7",
+        "psr/log": "^1.1"
     },
     "require-dev": {
         "phpstan/phpstan": "^1.8"

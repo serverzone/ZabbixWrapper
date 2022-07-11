@@ -1,11 +1,17 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace ZabbixWrapper;
 
 class EntityManager extends AbstractEntityTree implements EntityTree
 {
 
-    public function __construct(\ZabbixApi\ZabbixApi $zabbix)
+    /**
+     * Class constructor.
+     *
+     * @param \ZabbixApi\ZabbixApi $zabbix
+     * @param mixed $data
+     */
+    public function __construct($zabbix, $data)
     {
         $this->zabbix = $zabbix;
     }
@@ -109,7 +115,7 @@ class EntityManager extends AbstractEntityTree implements EntityTree
 
     /*************** Getters ******************************/
 
-    public function getEntityManager()
+    public function getEntityManager(): \ZabbixWrapper\EntityManager
     {
         return $this;
     }

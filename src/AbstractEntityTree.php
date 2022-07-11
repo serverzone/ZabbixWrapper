@@ -1,8 +1,9 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace ZabbixWrapper;
 
 use Psr\Log;
+use Psr\Log\LoggerInterface;
 
 abstract class AbstractEntityTree implements EntityTree
 {
@@ -23,13 +24,13 @@ abstract class AbstractEntityTree implements EntityTree
 
     /*************** Zabbix *******************************/
 
-    protected $zabbix;
+    protected \ZabbixApi\ZabbixApi $zabbix;
 
     /**
      * Returns ZabbixApi\ZabbixApi instance we use in current tree
      *
      */
-    public function getZabbix()
+    public function getZabbix(): \ZabbixApi\ZabbixApi
     {
         return $this->zabbix;
     }
@@ -41,8 +42,9 @@ abstract class AbstractEntityTree implements EntityTree
     /**
      * Return current logger or NullLogger it none found.
      *
+     * @return LoggerInterface
      */
-    public function getLogger()
+    public function getLogger(): LoggerInterface
     {
         if (isset($this->logger) === false) {
             $parent = $this->getParent();
@@ -69,10 +71,10 @@ abstract class AbstractEntityTree implements EntityTree
     protected EntityManager $entityManager;
 
     /**
-     * Returns EntityManagers
+     * Returns EntityManager.
      *
      */
-    protected function getEntityManager()
+    public function getEntityManager(): EntityManager
     {
         return $this->entityManager;
     }

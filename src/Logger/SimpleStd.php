@@ -12,6 +12,13 @@ use Psr\Log\LoggerInterface;
 final class SimpleStd extends AbstractLogger
 {
 
+    /**
+     * Log message.
+     *
+     * @param mixed $level
+     * @param string $message
+     * @param array<string, mixed> $context
+     */
     public function log($level, $message, array $context = [])
     {
         $history = $context['@@EntityHistory'] ?? [];

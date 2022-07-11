@@ -22,7 +22,7 @@ class DummyFluent implements Entity
 
     public static function getZabbixEndpoint()
     {
-        throw new \InvalidStateException('This is not supported. Seems like a rare case. Feel free to report use case.');
+        throw new \LogicException('This is not supported. Seems like a rare case. Feel free to report use case.');
     }
 
     public static function fetchEntities(ZabbixWrapper\EntityTree $parent, ...$parameters)

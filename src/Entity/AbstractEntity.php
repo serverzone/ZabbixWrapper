@@ -1,24 +1,23 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace ZabbixWrapper\Entity;
 
 use ZabbixWrapper;
-use ZabbixWrapper\EntityNotFoundException;
 use ZabbixWrapper\Factory;
 
 abstract class AbstractEntity extends ZabbixWrapper\AbstractEntityTree implements Entity, ZabbixWrapper\EntityTree
 {
 
-    /** @var $entityNameIndex Default entity name - please follow to filterBuild documentation */
+    /** @var string $entityNameIndex Default entity name - please follow to filterBuild documentation */
     protected static string $entityNameIndex;
 
-    /** @var $entityIdIndex Unique entity id - please follow update() and delete() methods */
+    /** @var string $entityIdIndex Unique entity id - please follow update() and delete() methods */
     protected static string $entityIdIndex;
 
-    /** @var $zabbixEndpoint Variable used for zabbix calls: $zabbix->$zabbixEndpoint->get(); */
+    /** @var string $zabbixEndpoint Variable used for zabbix calls: $zabbix->$zabbixEndpoint->get(); */
     protected static string $zabbixEndpoint;
 
-    /** @var $entity Contains entity from zabbix api */
+    /** @var array<mixed> $entity Contains entity from zabbix api */
     protected array $entity;
 
     /**
@@ -34,10 +33,10 @@ abstract class AbstractEntity extends ZabbixWrapper\AbstractEntityTree implement
     /**
      * Protected constructor - use getEntity or getEntities factories
      *
-     * @param $parent Parent containing zabbix api and other stugg
-     * @param $entity Array with entity data
+     * @param \ZabbixWrapper\EntityTree $parent Parent containing zabbix api and other stugg
+     * @param array<mixed> $entity Array with entity data
      */
-    protected function __construct(ZabbixWrapper\EntityTree $parent, array $entity)
+    public function __construct($parent, $entity)
     {
         $this->parent = $parent;
         $this->entityManager = $parent->getEntityManager();

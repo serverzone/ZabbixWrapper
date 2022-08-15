@@ -4,6 +4,7 @@ namespace ZabbixWrapper;
 
 use Psr\Log;
 use Psr\Log\LoggerInterface;
+use ZabbixWrapper\Exception\EntityNotFoundException;
 
 abstract class AbstractEntityTree implements EntityTree
 {

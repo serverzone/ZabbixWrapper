@@ -2,6 +2,9 @@
 
 namespace ZabbixWrapper;
 
+use ZabbixWrapper\Exception\EntityNotFoundException;
+use ZabbixWrapper\Exception\MultipleEntitiesFoundException;
+
 class EntityManager extends AbstractEntityTree implements EntityTree
 {
 

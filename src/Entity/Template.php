@@ -29,6 +29,7 @@ class Template extends AbstractEntity
     protected function buildCreateEntityValues(string $className)
     {
         switch ($className) {
+            case DiscoveryRule::class:
             case Item::class:
                 return [
                     'hostid' => $this->get('templateid'),

@@ -9,6 +9,8 @@ class DiscoveryRule extends AbstractEntity
 
     protected static string $entityNameIndex = 'name';
 
+    protected static string $entityIdIndex = 'itemid';
+
     protected static string $zabbixEndpoint = 'discoveryrule';
 
     protected function buildGetEntityParameters(string $className)

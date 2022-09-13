@@ -37,5 +37,4 @@ class Template extends AbstractEntity
 
         return false;
     }
-
 }

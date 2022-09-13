@@ -25,4 +25,17 @@ class Template extends AbstractEntity
 
         return false;
     }
+
+    protected function buildCreateEntityValues(string $className)
+    {
+        switch ($className) {
+            case Item::class:
+                return [
+                    'hostid' => $this->get('templateid'),
+                ];
+        }
+
+        return false;
+    }
+
 }

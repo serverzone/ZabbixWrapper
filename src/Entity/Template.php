@@ -30,6 +30,7 @@ class Template extends AbstractEntity
     {
         switch ($className) {
             case DiscoveryRule::class:
+            case Graph::class:
             case Item::class:
                 return [
                     'hostid' => $this->get('templateid'),

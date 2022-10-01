@@ -14,8 +14,19 @@ class Host extends AbstractEntity
     protected function buildGetEntityParameters(string $className)
     {
         switch ($className) {
+            case Macro::class:
             case Template::class:
                 return [ 'hostids' => $this->get('hostid') ];
+        }
+
+        return false;
+    }
+
+    protected function buildCreateEntityValues(string $className)
+    {
+        switch ($className) {
+            case Macro::class:
+                return [ 'hostid' => $this->get('hostid') ];
         }
 
         return false;

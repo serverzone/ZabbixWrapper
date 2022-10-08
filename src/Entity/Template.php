@@ -20,6 +20,7 @@ class Template extends AbstractEntity
             case Item::class:
             case Trigger::class:
             case Graph::class:
+            case WebScenario::class:
                 return [ 'templateids' => [ $this->get('templateid') ]];
         }
 
@@ -32,6 +33,7 @@ class Template extends AbstractEntity
             case DiscoveryRule::class:
             case Graph::class:
             case Item::class:
+            case WebScenario::class:
                 return [
                     'hostid' => $this->get('templateid'),
                 ];

@@ -33,6 +33,7 @@ class Template extends AbstractEntity
             case DiscoveryRule::class:
             case Graph::class:
             case Item::class:
+            case Macro::class:
             case WebScenario::class:
                 return [
                     'hostid' => $this->get('templateid'),

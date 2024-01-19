@@ -85,8 +85,8 @@ $itemPrototype = $manager->getEntity(ZE\Template::class, 'Linux by Zabbix agent 
  *  Please, follow (zabbix api documentation)[https://www.zabbix.com/documentation/current/en/manual/api/reference] to pass correct parameters
 
 ```php
-$template->getEntitiy(ZE\Template::class, [ 'templateids' => 12345 ]);
-$template->getEntitiy(ZE\Template::class, [ 'filter' => [ 'uuid' => 'dad8d6c6-21c7-4ff2-a9ad-987ba8e9de84' ] ]);
+$template->getEntity(ZE\Template::class, [ 'templateids' => 12345 ]);
+$template->getEntity(ZE\Template::class, [ 'filter' => [ 'uuid' => 'dad8d6c6-21c7-4ff2-a9ad-987ba8e9de84' ] ]);
 ```
 
 ## Entity methods

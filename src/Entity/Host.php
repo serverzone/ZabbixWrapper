@@ -16,6 +16,7 @@ class Host extends AbstractEntity
         switch ($className) {
             case Macro::class:
             case Template::class:
+            case Trigger::class:
             case WebScenario::class:
                 return [ 'hostids' => $this->get('hostid') ];
         }
@@ -27,6 +28,7 @@ class Host extends AbstractEntity
     {
         switch ($className) {
             case Macro::class:
+            case WebScenario::class:
                 return [ 'hostid' => $this->get('hostid') ];
         }
 
